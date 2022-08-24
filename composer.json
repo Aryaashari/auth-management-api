@@ -1,0 +1,23 @@
+{
+    "name": "arya-ashari/auth-api",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Arya",
+            "email": "aryaashari100@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Auth\\Api\\" : "app"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Auth\\Api\\" : "test"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
