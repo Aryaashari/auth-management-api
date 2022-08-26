@@ -32,5 +32,22 @@ class SessionRepoTest extends TestCase {
         $this->assertIsObject($session);
     }
 
+    public function testGetSession() : void {
+        $session = $this->sesRepo->createSession("aryaashari");
+        var_dump($session);
+
+        $session2 = $this->sesRepo->getSession($session->id);
+        var_dump($session2);
+
+        $this->assertEquals($session->id, $session2->id);
+    }
+
+    public function testGetSessionNotFound() : void {
+        $session2 = $this->sesRepo->getSession("asdsd");
+        var_dump($session2);
+
+        $this->assertNull($session2);
+    }
+
 
 }
