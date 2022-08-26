@@ -3,9 +3,11 @@
 require_once __DIR__."/../vendor/autoload.php";
 
 use Auth\Api\App\Route;
+use Auth\Api\Config\Database;
 use Auth\Api\Controller\HomeController;
 use Auth\Api\Controller\UserController;
 
+Database::getConnection("mysql", "production");
 Route::get("/", HomeController::class, "index", []);
 
 // User
