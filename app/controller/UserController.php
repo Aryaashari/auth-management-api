@@ -2,10 +2,12 @@
 
 namespace Auth\Api\Controller;
 
+use Auth\Api\Config\App;
 use Auth\Api\Exception\ValidationException;
 use Auth\Api\Model\User;
 use Auth\Api\Repository\SessionRepository;
 use Auth\Api\Repository\UserRepository;
+use Firebase\JWT\JWT;
 
 class UserController {
 
@@ -57,7 +59,7 @@ class UserController {
             }
 
 
-            $user = $this->userRepo->register(new User(null, $name, $username, $password));
+            $user = $this->userRepo->register(new User(null, $name, $username, password_hash($password, PASSWORD_BCRYPT)));
 
             http_response_code(200);
             header("Content-type: application/json");
@@ -93,6 +95,83 @@ class UserController {
                 "data" => null
             ]);
         }
+    }
+
+
+    public function login() : void {
+
+        $username = htmlspecialchars(trim($_POST["username"] ?? ""));
+        $password = htmlspecialchars(trim($_POST["password"] ?? ""));
+        
+
+        try {
+            // Validasi username
+            if ($username == "") {
+                throw new ValidationException("Username is required");
+            }
+
+            $user = $this->userRepo->findByUsername($username);
+
+            if ($user == null) {
+                throw new ValidationException("Username or password invalid");
+            }
+
+            // Validasi password
+            if ($password == "") {
+                throw new ValidationException("Password is required");
+            }
+
+            if (!password_verify($password, $user->password)) {
+                throw new ValidationException("Username or password invalid");
+            }
+
+            $session = $this->sesRepo->createSession($user->username);
+
+            $payload = [
+                "session_id" => $session->id,
+                "username" => $user->username
+            ];
+
+            $jwt = JWT::encode($payload, App::$secretKey, 'HS256');
+
+            http_response_code(200);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "success",
+                "code" => 200,
+                "message" => "Login user successfuly",
+                "error" => null,
+                "data" => [
+                    "token" => $jwt,
+                    "user" => [
+                        "id" => $user->id,
+                        "name" => $user->name,
+                        "username" => $user->username
+                    ]
+                ]
+            ]);
+        } catch(ValidationException $e) {
+            http_response_code(400);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "error",
+                "code" => 400,
+                "message" => "Failed to login user",
+                "error" => $e->getMessage(),
+                "data" => null
+            ]);
+        } catch(\Exception $e) {
+            http_response_code(500);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "error",
+                "code" => 500,
+                "message" => "Something went error",
+                "error" => $e,
+                "data" => null
+            ]);
+        }
+
     }
 
 
