@@ -49,5 +49,15 @@ class SessionRepoTest extends TestCase {
         $this->assertNull($session2);
     }
 
+    public function testDestroySession() : void {
+        $session = $this->sesRepo->createSession("aryaashari");
+        var_dump($session);
+
+        $session = $this->sesRepo->destroySession($session->id);
+
+
+        $this->assertTrue($session);
+    }
+
 
 }
