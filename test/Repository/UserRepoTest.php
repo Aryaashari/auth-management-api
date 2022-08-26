@@ -5,6 +5,7 @@ namespace Auth\Api\Repository;
 require_once __DIR__."/../../vendor/autoload.php";
 
 use Auth\Api\Config\Database;
+use Auth\Api\Model\User;
 use PHPUnit\Framework\TestCase;
 
 class UserRepoTest extends TestCase{
@@ -35,6 +36,13 @@ class UserRepoTest extends TestCase{
         $user = $this->userRepo->findByUsername("aryaashari");
         var_dump($user);
         $this->assertNull($user);
+    }
+
+    public function testRegister() : void {
+        $user = new User(null, "Arya Ashari", "arya", password_hash("password", PASSWORD_BCRYPT));
+        $user = $this->userRepo->register($user);
+        var_dump($user);
+        $this->assertIsObject($user);
     }
 
 

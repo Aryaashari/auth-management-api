@@ -34,6 +34,23 @@ class UserRepository {
 
     }
 
+    public function register(User $user) : User {
+
+        try {
+
+            $stmt = $this->db->prepare("INSERT INTO users(name,username,password) VALUES(?,?,?)");
+            $stmt->execute([$user->name, $user->username, $user->password]);
+            
+            $user->id = $this->db->lastInsertId();
+    
+            return $user;
+
+        } catch(\Exception $e) {
+            throw $e;
+        }
+
+    }
+
 
     public function deleteAllData() : void {
         try {
