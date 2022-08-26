@@ -7,7 +7,12 @@ use Auth\Api\Exception\ValidationException;
 use Auth\Api\Model\User;
 use Auth\Api\Repository\SessionRepository;
 use Auth\Api\Repository\UserRepository;
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use Firebase\JWT\SignatureInvalidException;
+use UnexpectedValueException;
 
 class UserController {
 
@@ -157,6 +162,59 @@ class UserController {
                 "status" => "error",
                 "code" => 400,
                 "message" => "Failed to login user",
+                "error" => $e->getMessage(),
+                "data" => null
+            ]);
+        } catch(\Exception $e) {
+            http_response_code(500);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "error",
+                "code" => 500,
+                "message" => "Something went error",
+                "error" => $e,
+                "data" => null
+            ]);
+        }
+
+    }
+
+    public function detail() : void {
+
+        try {
+            $token = $_SERVER["HTTP_TOKEN"] ?? "";
+            if ($token == "") {
+                throw new ValidationException("Token is empty");
+            }
+
+            $decode  = JWT::decode($token, new Key(App::$secretKey, 'HS256'));
+
+            $session = $this->sesRepo->getSession($decode->session_id);
+            if ($session == null) {
+                throw new ValidationException("Token is invalid");
+            }
+
+            $user = $this->userRepo->findByUsername($decode->username);
+            http_response_code(200);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "success",
+                "code" => 200,
+                "message" => "Get Detail User Successfuly",
+                "error" => null,
+                "data" => [
+                    "id" => $user->id,
+                    "name" => $user->name,
+                    "username" => $user->username
+                ]
+            ]);
+        } catch(ValidationException | UnexpectedValueException | SignatureInvalidException | BeforeValidException | ExpiredException $e) {
+            http_response_code(400);
+            header("Content-type: application/json");
+            echo json_encode([
+                "status" => "error",
+                "code" => 400,
+                "message" => "Unauthorized",
                 "error" => $e->getMessage(),
                 "data" => null
             ]);
