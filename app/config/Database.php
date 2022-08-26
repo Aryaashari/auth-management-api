@@ -14,7 +14,7 @@ class Database {
                     "type" => "mysql",
                     "host" => "localhost",
                     "port" => "3306",
-                    "dbname" => "auth_api",
+                    "dbname" => "auth_api_test",
                     "username" => "root",
                     "password" => ""
                 ],
@@ -22,7 +22,7 @@ class Database {
                     "type" => "mysql",
                     "host" => "localhost",
                     "port" => "3306",
-                    "dbname" => "auth_api_test",
+                    "dbname" => "auth_api",
                     "username" => "root",
                     "password" => ""
                 ]
