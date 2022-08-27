@@ -12,18 +12,31 @@ use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
+use Monolog\Logger;
 use UnexpectedValueException;
+use Monolog\Processor\HostnameProcessor;
+use Monolog\Handler\RotatingFileHandler;
 
 class UserController {
 
 
     private UserRepository $userRepo;
     private SessionRepository $sesRepo;
+    private Logger $logger;
 
     public function __construct()
     {
         $this->userRepo = new UserRepository;
         $this->sesRepo = new SessionRepository;
+        $this->logger = new Logger(UserController::class);
+        $this->logger->pushHandler(new RotatingFileHandler(__DIR__."/../../logs/error_log/error.log", 7, Logger::ERROR));
+        $this->logger->pushHandler(new RotatingFileHandler(__DIR__."/../../logs/warning_log/warning.log", 7, Logger::WARNING));
+        $this->logger->pushHandler(new RotatingFileHandler(__DIR__."/../../logs/app_log/app.log", 7));
+        $this->logger->pushProcessor(new HostnameProcessor());
+        $this->logger->pushProcessor(function ($record) {
+            $record["extra"]["ipAddress"] = $_SERVER["REMOTE_ADDR"];
+            return $record;
+        });
     }
 
 
@@ -80,6 +93,7 @@ class UserController {
                 ]
             ]);
         } catch(ValidationException $e) {
+            $this->logger->warning($e->getMessage());
             http_response_code(400);
             header("Content-type: application/json");
             echo json_encode([
@@ -90,6 +104,7 @@ class UserController {
                 "data" => null
             ]);
         } catch(\Exception $e) {
+            $this->logger->error($e->getMessage());
             http_response_code(500);
             header("Content-type: application/json");
             echo json_encode([
@@ -130,6 +145,7 @@ class UserController {
                 throw new ValidationException("Username or password invalid");
             }
 
+            $this->logger->info("Try to login", ["username" => $user->username]);
             $session = $this->sesRepo->createSession($user->username);
 
             $payload = [
@@ -139,6 +155,7 @@ class UserController {
 
             $jwt = JWT::encode($payload, App::$secretKey, 'HS256');
 
+            $this->logger->info("Success to login", ["username" => $user->username]);
             http_response_code(200);
             header("Content-type: application/json");
             echo json_encode([
@@ -156,6 +173,7 @@ class UserController {
                 ]
             ]);
         } catch(ValidationException $e) {
+            $this->logger->warning($e->getMessage());
             http_response_code(400);
             header("Content-type: application/json");
             echo json_encode([
@@ -166,6 +184,7 @@ class UserController {
                 "data" => null
             ]);
         } catch(\Exception $e) {
+            $this->logger->error($e->getMessage());
             http_response_code(500);
             header("Content-type: application/json");
             echo json_encode([
@@ -209,6 +228,7 @@ class UserController {
                 ]
             ]);
         } catch(ValidationException | UnexpectedValueException | SignatureInvalidException | BeforeValidException | ExpiredException $e) {
+            $this->logger->warning($e->getMessage());
             http_response_code(400);
             header("Content-type: application/json");
             echo json_encode([
@@ -219,6 +239,7 @@ class UserController {
                 "data" => null
             ]);
         } catch(\Exception $e) {
+            $this->logger->error($e->getMessage());
             http_response_code(500);
             header("Content-type: application/json");
             echo json_encode([
@@ -247,9 +268,11 @@ class UserController {
             if ($session == null) {
                 throw new ValidationException("Token is invalid");
             }
-    
+            
+            $this->logger->info("Try to logout", ["username" => $decode->username, "session_id" => $decode->session_id]);
             $this->sesRepo->destroySession($session->id);
             
+            $this->logger->info("Success to logout", ["username" => $decode->username, "session_id" => $decode->session_id]);
             http_response_code(200);
             header("Content-type: application/json");
             echo json_encode([
@@ -261,6 +284,7 @@ class UserController {
             ]);
 
         } catch(ValidationException | UnexpectedValueException | SignatureInvalidException | BeforeValidException | ExpiredException $e) {
+            $this->logger->warning($e->getMessage());
             http_response_code(400);
             header("Content-type: application/json");
             echo json_encode([
@@ -271,6 +295,7 @@ class UserController {
                 "data" => null
             ]);
         } catch(\Exception $e) {
+            $this->logger->error($e->getMessage());
             http_response_code(500);
             header("Content-type: application/json");
             echo json_encode([

@@ -1,0 +1,44 @@
+[2022-08-27T05:00:26.591287+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:00:26.632948+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:01:01.810758+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:01:01.813676+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:01:38.883894+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:01:38.893649+02:00] Auth\Api\Repository\UserRepository.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELEC id,name,username,password FROM users WHERE username='arya'' at line 1 {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:02:53.820473+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"aryadf"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:02:53.824681+02:00] Auth\Api\Repository\UserRepository.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELEC id,name,username,password FROM users WHERE username='aryadf'' at line 1 {"username":"aryadf"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:03:13.328759+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"aryadf"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:03:13.332151+02:00] Auth\Api\Repository\UserRepository.INFO: Username not found {"username":"aryadf"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:13:40.228515+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:13:40.241540+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:13:40.438159+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:13:40.442514+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:14:04.239656+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to get session {"session_id":"630988cad009f_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:14:04.244223+02:00] Auth\Api\Repository\SessionRepository.INFO: Session found {"session_id":"630988cad009f_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:14:04.244550+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:14:04.245127+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.195726+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.203249+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.383087+02:00] Auth\Api\Controller\UserController.INFO: Try to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.383744+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.388039+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:22:37.394027+02:00] Auth\Api\Controller\UserController.INFO: Success to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:23:26.658939+02:00] Auth\Api\Controller\UserController.WARNING: Token is empty [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:25:03.066180+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to get session {"session_id":"6308f8530ad2a_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:25:03.074057+02:00] Auth\Api\Repository\SessionRepository.INFO: Session not found {"session_id":"6308f8530ad2a_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:25:03.074734+02:00] Auth\Api\Controller\UserController.WARNING: Token is invalid [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:25:27.458287+02:00] Auth\Api\Controller\UserController.WARNING: Username is required [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.733151+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.737322+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.958662+02:00] Auth\Api\Controller\UserController.INFO: Try to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.959287+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.976064+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:40.980272+02:00] Auth\Api\Controller\UserController.INFO: Success to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:54.737526+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to get session {"session_id":"6308f88c42a1b_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:54.741402+02:00] Auth\Api\Repository\SessionRepository.INFO: Session not found {"session_id":"6308f88c42a1b_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:54.741775+02:00] Auth\Api\Controller\UserController.WARNING: Token is invalid [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.105897+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to get session {"session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.108106+02:00] Auth\Api\Repository\SessionRepository.INFO: Session found {"session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.108458+02:00] Auth\Api\Controller\UserController.INFO: Try to logout {"username":"arya","session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.108849+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to destroy session {"session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.114403+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to destroy session {"session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:27:06.114508+02:00] Auth\Api\Controller\UserController.INFO: Success to logout {"username":"arya","session_id":"63098ef0ea49e_arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}

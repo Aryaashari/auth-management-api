@@ -1,0 +1,3 @@
+[2022-08-27T05:25:03.074734+02:00] Auth\Api\Controller\UserController.WARNING: Token is invalid [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:25:27.458287+02:00] Auth\Api\Controller\UserController.WARNING: Username is required [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:26:54.741775+02:00] Auth\Api\Controller\UserController.WARNING: Token is invalid [] {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
