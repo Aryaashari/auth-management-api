@@ -1,4 +1,4 @@
 /vendor
-/logs/app_log/*
-/logs/error_log/*
-/logs/warning_log/*
+logs/app_log/*
+logs/error_log/*
+logs/warning_log/*

@@ -60,3 +60,9 @@
 [2022-08-27T05:38:31.800748+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
 [2022-08-27T05:38:31.805328+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
 [2022-08-27T05:38:31.813079+02:00] Auth\Api\Controller\UserController.INFO: Success to login {"username":"arya"} {"ipAddress":"UNKNOWN","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.315294+02:00] Auth\Api\Repository\UserRepository.INFO: Try to find user by username {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.322818+02:00] Auth\Api\Repository\UserRepository.INFO: Username found {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.541101+02:00] Auth\Api\Controller\UserController.INFO: Try to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.542508+02:00] Auth\Api\Repository\SessionRepository.INFO: Try to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.546269+02:00] Auth\Api\Repository\SessionRepository.INFO: Success to create session {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
+[2022-08-27T05:41:55.551939+02:00] Auth\Api\Controller\UserController.INFO: Success to login {"username":"arya"} {"ipAddress":"127.0.0.1","hostname":"Arya-Ashari"}
